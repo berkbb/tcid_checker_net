@@ -1,6 +1,10 @@
 ﻿using System.Text;
+using CustomExtensions;
 
 namespace TCIDCheckerLibrary;
+/// <summary>
+/// TC ID Checker class.
+/// </summary>
 public class TCIDChecker
 {
 
@@ -213,6 +217,8 @@ public class TCIDChecker
             return null;
         }
     }
+
+
 
 }
 
