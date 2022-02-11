@@ -1,0 +1,12 @@
+/Users/berkbabadogan/Documents/GitHub/tcid_checker_net/TCIDCheckerLibrary/bin/Debug/net6.0/TCIDCheckerLibrary.deps.json
+/Users/berkbabadogan/Documents/GitHub/tcid_checker_net/TCIDCheckerLibrary/bin/Debug/net6.0/TCIDCheckerLibrary.dll
+/Users/berkbabadogan/Documents/GitHub/tcid_checker_net/TCIDCheckerLibrary/bin/Debug/net6.0/ref/TCIDCheckerLibrary.dll
+/Users/berkbabadogan/Documents/GitHub/tcid_checker_net/TCIDCheckerLibrary/bin/Debug/net6.0/TCIDCheckerLibrary.pdb
+/Users/berkbabadogan/Documents/GitHub/tcid_checker_net/TCIDCheckerLibrary/obj/Debug/net6.0/TCIDCheckerLibrary.csproj.AssemblyReference.cache
+/Users/berkbabadogan/Documents/GitHub/tcid_checker_net/TCIDCheckerLibrary/obj/Debug/net6.0/TCIDCheckerLibrary.GeneratedMSBuildEditorConfig.editorconfig
+/Users/berkbabadogan/Documents/GitHub/tcid_checker_net/TCIDCheckerLibrary/obj/Debug/net6.0/TCIDCheckerLibrary.AssemblyInfoInputs.cache
+/Users/berkbabadogan/Documents/GitHub/tcid_checker_net/TCIDCheckerLibrary/obj/Debug/net6.0/TCIDCheckerLibrary.AssemblyInfo.cs
+/Users/berkbabadogan/Documents/GitHub/tcid_checker_net/TCIDCheckerLibrary/obj/Debug/net6.0/TCIDCheckerLibrary.csproj.CoreCompileInputs.cache
+/Users/berkbabadogan/Documents/GitHub/tcid_checker_net/TCIDCheckerLibrary/obj/Debug/net6.0/TCIDCheckerLibrary.dll
+/Users/berkbabadogan/Documents/GitHub/tcid_checker_net/TCIDCheckerLibrary/obj/Debug/net6.0/ref/TCIDCheckerLibrary.dll
+/Users/berkbabadogan/Documents/GitHub/tcid_checker_net/TCIDCheckerLibrary/obj/Debug/net6.0/TCIDCheckerLibrary.pdb
