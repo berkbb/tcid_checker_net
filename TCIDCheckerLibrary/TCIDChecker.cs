@@ -218,6 +218,72 @@ public class TCIDChecker
         }
     }
 
+    /// <summary>
+    /// Validate that Turkish ID number with given credentials from Web API.
+    /// </summary>
+    /// <param name="id">is TC ID.</param>
+    /// <param name="name"> is user name.</param>
+    /// <param name="surname"> is user surname.</param>
+    /// <param name="birthYear">is user birth year.</param>
+    /// <param name="skipRealCitizen">is a key that controls not to create a real citizen ID. If it is true, ID will start 0, it is not correct on real life.</param>
+    /// <returns>boolean.</returns>
+    public async Task<bool> validateIDAsync(string id, string name, string surname, int birthYear,
+        bool skipRealCitizen)
+    {
+        return false;
+    }
+    /// <summary>
+    /// Validates Person and ID Card with given credentials from Web API.
+    /// </summary>
+    /// <param name="id">is TC ID.</param>
+    /// <param name="name"> is user name.</param>
+    /// <param name="surname"> is user surname.</param>
+    /// <param name="noSurname">is person have surname or not.</param>
+    /// <param name="birthDay">is user birth day.</param>
+    /// <param name="noBirthDay">is person have birth day or not.</param>
+    /// <param name="birthMonth">is user birth month</param>
+    /// <param name="noBirthMonth">is person have birth month or not.</param>
+    /// <param name="birthYear">is user birth year.</param>
+    /// <param name="oldWalletSerial">is old wallet serial code.</param>
+    /// <param name="oldWalletNo">is old wallet number.</param>
+    /// <param name="newidCardSerial">is new TC Id Card serial number</param>
+    /// <param name="skipRealCitizen">is a key that controls not to create a real citizen ID. If it is true, ID will start 0, it is not correct on real life.</param>
+    /// <returns> boolean.</returns>
+    /// <notes>Returns always 'false' due to response from Web API. Service may have been stopped from authorities after Turkish people info leak.</notes>
+    public async Task<bool> validatePersonAndCardAsync(
+         string id,
+         string name,
+         string surname,
+         bool noSurname,
+         int birthDay,
+         bool noBirthDay,
+         int birthMonth,
+         bool noBirthMonth,
+         int birthYear,
+         string oldWalletSerial,
+         int oldWalletNo,
+         string newidCardSerial,
+         bool skipRealCitizen)
+    {
+        return false;
+
+    }
+    /// <summary>
+    /// Validate that Foreign ID number given by Turkish authorities with given credentials from Web API.
+    /// </summary>
+    /// <param name="id">is TC ID.</param>
+    /// <param name="name"> is user name.</param>
+    /// <param name="surname"> is user surname.</param>
+    /// <param name="birthYear">is user birth year.</param>
+    /// <param name="birthMonth">is user birth month</param>
+    /// <param name="birthDay">is user birth day.</param>
+    /// <param name="skipRealCitizen">is a key that controls not to create a real citizen ID. If it is true, ID will start 0, it is not correct on real life.</param>
+    /// <returns>boolean.</returns>
+    public async Task<bool> validateForeignIDAsync(String id, String name, String surname,
+    int birthYear, int birthMonth, int birthDay, bool skipRealCitizen)
+    {
+        return false;
+    }
 
 
 }

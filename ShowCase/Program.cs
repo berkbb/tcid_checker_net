@@ -23,3 +23,38 @@ checker.generateID(true, true); // Returns a print ready TC ID. -- 02345678982.
 // String? r9 =
 checker.generateID(
     true, false); // Returns a valid fake TC ID start with 0. -- random int.
+
+// bool r3 =
+await checker.validateIDAsync("11111111111", "ali", "veli", 1900,
+    false); // Validate ID from WEB API. -- false
+
+// bool r4 =
+await checker.validateForeignIDAsync("11111111111", "jack", "delay", 1, 1, 1900,
+    false); // Validate foreign ID from WEB API. -- false
+
+// bool r5 =
+await checker.validatePersonAndCardAsync(
+    "11111111111",
+    "ali",
+    "veli",
+    false,
+    1,
+    false,
+    1,
+    false,
+    1900,
+    "a15",
+    796544,
+    "y02n45764",
+    false); // Validate Person and Card ID from WEB API. -- false
+
+//Print area.
+// Console.WriteLine(r1);
+// Console.WriteLine(r2);
+// Console.WriteLine(r3);
+// Console.WriteLine(r4);
+// Console.WriteLine(r5);
+// Console.WriteLine(r6);
+// Console.WriteLine(r7);
+// Console.WriteLine(r8);
+// Console.WriteLine(r9);
