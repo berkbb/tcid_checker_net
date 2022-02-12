@@ -31,7 +31,7 @@ await checker.validateIDAsync("11111111111", "ali", "veli", 1900,
 
 // bool r4 =
 await checker.validateForeignIDAsync("11111111111", "jack", "delay", 1, 1, 1900,
-    false); // Validate foreign ID from WEB API. -- false
+    true); // Validate foreign ID from WEB API. -- false
 
 // bool r5 =
 await checker.validatePersonAndCardAsync(

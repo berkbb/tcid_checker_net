@@ -318,13 +318,13 @@ public class TCIDChecker
     /// <param name="id">is TC ID.</param>
     /// <param name="name"> is user name.</param>
     /// <param name="surname"> is user surname.</param>
-    /// <param name="birthYear">is user birth year.</param>
+    ///  <param name="birthDay">is user birth day.</param>
     /// <param name="birthMonth">is user birth month</param>
-    /// <param name="birthDay">is user birth day.</param>
+    /// <param name="birthYear">is user birth year.</param>
     /// <param name="skipRealCitizen">is a key that controls not to create a real citizen ID. If it is true, ID will start 0, it is not correct on real life.</param>
     /// <returns>boolean.</returns>
-    public async Task<bool> validateForeignIDAsync(String id, String name, String surname,
-    int birthYear, int birthMonth, int birthDay, bool skipRealCitizen)
+    public async Task<bool> validateForeignIDAsync(string id, string name, string surname,
+    int birthDay, int birthMonth, int birthYear, bool skipRealCitizen)
     {
         try
         {
@@ -332,13 +332,27 @@ public class TCIDChecker
 
             if (controlID(id, skipRealCitizen, false) == true)
             {
+                var soap12Envelope = CreateSoapEnvelope_ValidateForeignID(id, name.ToLower(), surname.ToLower(), birthDay, birthMonth, birthYear); // Validate ID SOAP Envelope
+                Console.WriteLine(await soap12Envelope.ReadAsStringAsync());
+                var response = await CreateHTTPRequestAsync("https://tckimlik.nvi.gov.tr/Service/KPSPublicYabanciDogrula.asmx", soap12Envelope); // Make request.
+
+                if (response != null)
+                {
+                    XmlDocument doc = new XmlDocument();
+                    doc.LoadXml(response);
+                    var element = doc.GetElementsByTagName("YabanciKimlikNoDogrulaResult").Item(0)!.InnerText;
+                    result = element.parseBool(); // Parse string to boolean.
+                }
 
             }
+            Console.WriteLine(
+                $"Foreign Person --> ID: ${id}, Name: {name.ToLower()}, Surname: {surname.ToLower()}, Birth Year: {birthYear} validation result via Web API = {result}");
+
             return result;
         }
         catch (Exception e)
         {
-            Console.WriteLine($"An error occurred while validating Foreign ID - {e.Message}");
+            Console.WriteLine($"An error occurred while validating Turkish ID - {e}");
             return false;
         }
 
@@ -377,7 +391,7 @@ public class TCIDChecker
     }
 
     /// <summary>
-    /// Returns validateID() SOAP envelope.
+    /// Returns validateIDAsync() SOAP envelope.
     /// </summary>
     /// <param name="id">is TC ID.</param>
     /// <param name="name"> is user name.</param>
@@ -410,20 +424,94 @@ public class TCIDChecker
 
     }
 
-    string CreateSoapEnvelope_ValidateForeignID(string id, string name, string surname, int birthYear)
+    /// <summary>
+    /// Returns validateForeignIDAsync() SOAP envelope.
+    /// </summary>
+    /// <param name="id">is TC ID.</param>
+    /// <param name="name"> is user name.</param>
+    /// <param name="surname"> is user surname.</param>
+    /// <param name="birthDay">is user birth day.</param>
+    ///  <param name="birthMonth">is user birth month</param>
+    /// <param name="birthYear">is user birth year.</param>
+    /// <returns>StringContent.</returns>
+    StringContent CreateSoapEnvelope_ValidateForeignID(string id, string name, string surname,
+   int birthDay, int birthMonth, int birthYear)
 
     {
 
-        return "";
+        var envelopeScheme = "http://www.w3.org/2003/05/soap-envelope";
+        var ws = "http://tckimlik.nvi.gov.tr/WS";
+
+        var soapEnvelopeText = @$"<soap:Envelope xmlns:soap=""{envelopeScheme}"" xmlns:ws=""{ws}"">
+    <soap:Header />
+    <soap:Body>
+        <ws:YabanciKimlikNoDogrula>
+            <ws:KimlikNo>{id}</ws:KimlikNo>
+            <ws:Ad>{name}</ws:Ad>
+            <ws:Soyad>{surname}</ws:Soyad>
+            <ws:DogumGun>{birthDay}</ws:DogumGun>
+            <ws:DogumAy>{birthMonth}</ws:DogumAy>
+            <ws:DogumYil>{birthYear}</ws:DogumYil>
+        </ws:YabanciKimlikNoDogrula>
+    </soap:Body>
+</soap:Envelope>
+";
+        return new StringContent(soapEnvelopeText, Encoding.UTF8, "application/soap+xml");
+
+
 
     }
 
-
-    string CreateSoapEnvelope_ValidatePersonAndCard(string id, string name, string surname, int birthYear)
+    /// <summary>
+    ///  Returns validatePersonAndCardAsync() SOAP envelope.
+    /// </summary>
+    /// <param name="id">is TC ID.</param>
+    /// <param name="name"> is user name.</param>
+    /// <param name="surname"> is user surname.</param>
+    /// <param name="noSurname">is person have surname or not.</param>
+    /// <param name="birthDay">is user birth day.</param>
+    /// <param name="noBirthDay">is person have birth day or not.</param>
+    /// <param name="birthMonth">is user birth month</param>
+    /// <param name="noBirthMonth">is person have birth month or not.</param>
+    /// <param name="birthYear">is user birth year.</param>
+    /// <param name="oldWalletSerial">is old wallet serial code.</param>
+    /// <param name="oldWalletNo">is old wallet number.</param>
+    /// <param name="newidCardSerial">is new TC Id Card serial number</param>
+    /// <param name="skipRealCitizen">is a key that controls not to create a real citizen ID. If it is true, ID will start 0, it is not correct on real life.</param>
+    /// <returns> StringContent.</returns>
+    StringContent CreateSoapEnvelope_ValidatePersonAndCard(string id,
+         string name,
+         string surname,
+         bool noSurname,
+         int birthDay,
+         string noBirthDay,
+         int birthMonth,
+         string noBirthMonth,
+         int birthYear,
+         string oldWalletSerial,
+         int oldWalletNo,
+         string newidCardSerial)
 
     {
 
-        return "";
+        var envelopeScheme = "http://www.w3.org/2003/05/soap-envelope";
+        var ws = "http://tckimlik.nvi.gov.tr/WS";
+
+        var soapEnvelopeText = @$"<soap:Envelope xmlns:soap=""{envelopeScheme}"" xmlns:ws=""{ws}"">
+    <soap:Header />
+    <soap:Body>
+        <ws:TCKimlikNoDogrula>
+            <ws:TCKimlikNo>{id}</ws:TCKimlikNo>
+            <ws:Ad>{name}</ws:Ad>
+            <ws:Soyad>{surname}</ws:Soyad>
+            <ws:DogumYili>{birthYear}</ws:DogumYili>
+        </ws:TCKimlikNoDogrula>
+    </soap:Body>
+</soap:Envelope>
+";
+        return new StringContent(soapEnvelopeText, Encoding.UTF8, "application/soap+xml");
+
+
 
     }
 }
