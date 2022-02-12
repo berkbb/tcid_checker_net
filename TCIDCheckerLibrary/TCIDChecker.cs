@@ -239,6 +239,7 @@ public class TCIDChecker
             if (controlID(id, skipRealCitizen, false) == true)
             {
                 var soap12Envelope = CreateSoapEnvelope_ValidateID(id, name.ToLower(), surname.ToLower(), birthYear); // Validate ID SOAP Envelope
+                                                                                                                      // Console.WriteLine(await soap12Envelope.ReadAsStringAsync());
                 var response = await CreateHTTPRequestAsync("https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx", soap12Envelope); // Make request.
 
                 if (response != null)
@@ -251,7 +252,7 @@ public class TCIDChecker
 
             }
             Console.WriteLine(
-                $"Person --> ID: ${id}, Name: {name.ToLower()}, Surname: {surname.ToLower()}, Birth Year: {birthYear} validation result via Web API = {result}");
+                $"Person --> ID: {id}, Name: {name.ToLower()}, Surname: {surname.ToLower()}, Birth Year: {birthYear} validation result via Web API = {result}");
 
             return result;
         }
@@ -263,6 +264,7 @@ public class TCIDChecker
     }
     /// <summary>
     /// Validates Person and ID Card with given credentials from Web API.
+    /// Returns always 'false' due to response from Web API. Service may have been stopped from authorities after Turkish people info leak.
     /// </summary>
     /// <param name="id">is TC ID.</param>
     /// <param name="name"> is user name.</param>
@@ -278,7 +280,7 @@ public class TCIDChecker
     /// <param name="newidCardSerial">is new TC Id Card serial number</param>
     /// <param name="skipRealCitizen">is a key that controls not to create a real citizen ID. If it is true, ID will start 0, it is not correct on real life.</param>
     /// <returns> boolean.</returns>
-    /// <notes>Returns always 'false' due to response from Web API. Service may have been stopped from authorities after Turkish people info leak.</notes>
+
     public async Task<bool> validatePersonAndCardAsync(
          string id,
          string name,
@@ -300,15 +302,31 @@ public class TCIDChecker
 
             if (controlID(id, skipRealCitizen, false) == true)
             {
+                var soap12Envelope = CreateSoapEnvelope_ValidatePersonAndCard(id, name.ToLower(), surname.ToLower(), noSurname.ToString().ToLower(), birthDay, noBirthDay.ToString().ToLower(), birthMonth, noBirthMonth.ToString().ToLower(), birthYear, oldWalletSerial.ToLower(), oldWalletNo, newidCardSerial.ToLower()); // Validate ID SOAP Envelope
+                Console.WriteLine(await soap12Envelope.ReadAsStringAsync());
+                var response = await CreateHTTPRequestAsync("https://tckimlik.nvi.gov.tr/Service/KPSPublicV2.asmx", soap12Envelope); // Make request.
+
+                if (response != null)
+                {
+                    XmlDocument doc = new XmlDocument();
+                    doc.LoadXml(response);
+                    var element = doc.GetElementsByTagName("KisiVeCuzdanDogrulaResult").Item(0)!.InnerText;
+                    result = element.parseBool(); // Parse string to boolean.
+                }
 
             }
+            Console.WriteLine(
+       $"Person and Card --> ID: {id}, Name: {name.ToLower()}, Surname: {surname.ToLower()}, Birth Year: {birthYear}, Birth Month: {birthMonth}, Birth Day: {birthDay},  Old Wallet No: {oldWalletNo},  Old Wallet Serial: {oldWalletSerial.ToLower()},  New ID Card Serial: {newidCardSerial.ToLower()} validation result via Web API = {result}");
+
+
             return result;
         }
         catch (Exception e)
         {
-            Console.WriteLine($"An error occurred while validating Person and Card - {e.Message}");
+            Console.WriteLine($"An error occurred while validating Person and Card - {e}");
             return false;
         }
+
 
 
     }
@@ -333,7 +351,7 @@ public class TCIDChecker
             if (controlID(id, skipRealCitizen, false) == true)
             {
                 var soap12Envelope = CreateSoapEnvelope_ValidateForeignID(id, name.ToLower(), surname.ToLower(), birthDay, birthMonth, birthYear); // Validate ID SOAP Envelope
-                Console.WriteLine(await soap12Envelope.ReadAsStringAsync());
+                //Console.WriteLine(await soap12Envelope.ReadAsStringAsync());
                 var response = await CreateHTTPRequestAsync("https://tckimlik.nvi.gov.tr/Service/KPSPublicYabanciDogrula.asmx", soap12Envelope); // Make request.
 
                 if (response != null)
@@ -346,13 +364,13 @@ public class TCIDChecker
 
             }
             Console.WriteLine(
-                $"Foreign Person --> ID: ${id}, Name: {name.ToLower()}, Surname: {surname.ToLower()}, Birth Year: {birthYear} validation result via Web API = {result}");
+                $"Foreign Person --> ID: {id}, Name: {name.ToLower()}, Surname: {surname.ToLower()}, Birth Year: {birthYear} validation result via Web API = {result}");
 
             return result;
         }
         catch (Exception e)
         {
-            Console.WriteLine($"An error occurred while validating Turkish ID - {e}");
+            Console.WriteLine($"An error occurred while validating Foreign ID - {e}");
             return false;
         }
 
@@ -397,7 +415,6 @@ public class TCIDChecker
     /// <param name="name"> is user name.</param>
     /// <param name="surname"> is user surname.</param>
     /// <param name="birthYear">is user birth year.</param>
-    /// <param name="skipRealCitizen">is a key that controls not to create a real citizen ID. If it is true, ID will start 0, it is not correct on real life.</param>
     /// <returns>StringContent.</returns>
     StringContent CreateSoapEnvelope_ValidateID(string id, string name, string surname, int birthYear)
 
@@ -477,12 +494,11 @@ public class TCIDChecker
     /// <param name="oldWalletSerial">is old wallet serial code.</param>
     /// <param name="oldWalletNo">is old wallet number.</param>
     /// <param name="newidCardSerial">is new TC Id Card serial number</param>
-    /// <param name="skipRealCitizen">is a key that controls not to create a real citizen ID. If it is true, ID will start 0, it is not correct on real life.</param>
     /// <returns> StringContent.</returns>
     StringContent CreateSoapEnvelope_ValidatePersonAndCard(string id,
          string name,
          string surname,
-         bool noSurname,
+         string noSurname,
          int birthDay,
          string noBirthDay,
          int birthMonth,
@@ -500,15 +516,25 @@ public class TCIDChecker
         var soapEnvelopeText = @$"<soap:Envelope xmlns:soap=""{envelopeScheme}"" xmlns:ws=""{ws}"">
     <soap:Header />
     <soap:Body>
-        <ws:TCKimlikNoDogrula>
+        <ws:KisiVeCuzdanDogrula>
             <ws:TCKimlikNo>{id}</ws:TCKimlikNo>
             <ws:Ad>{name}</ws:Ad>
             <ws:Soyad>{surname}</ws:Soyad>
-            <ws:DogumYili>{birthYear}</ws:DogumYili>
-        </ws:TCKimlikNoDogrula>
+            <ws:SoyadYok>{noSurname}</ws:SoyadYok>
+            <ws:DogumGun>{birthDay}</ws:DogumGun>
+            <ws:DogumGunYok>{noBirthDay}</ws:DogumGunYok>
+            <ws:DogumAy>{birthMonth}</ws:DogumAy>
+            <ws:DogumAyYok>{noBirthMonth}</ws:DogumAyYok>
+            <ws:DogumYil>{birthYear}</ws:DogumYil>
+            <ws:CuzdanSeri>{oldWalletSerial}</ws:CuzdanSeri>
+            <ws:CuzdanNo>{oldWalletNo}</ws:CuzdanNo>
+            <ws:TCKKSeriNo>{newidCardSerial}</ws:TCKKSeriNo>
+        </ws:KisiVeCuzdanDogrula>
     </soap:Body>
 </soap:Envelope>
 ";
+
+
         return new StringContent(soapEnvelopeText, Encoding.UTF8, "application/soap+xml");
 
 

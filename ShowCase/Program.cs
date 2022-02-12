@@ -29,6 +29,7 @@ checker.generateID(
 await checker.validateIDAsync("11111111111", "ali", "veli", 1900,
     false); // Validate ID from WEB API. -- false
 
+
 // bool r4 =
 await checker.validateForeignIDAsync("11111111111", "jack", "delay", 1, 1, 1900,
     true); // Validate foreign ID from WEB API. -- false
@@ -47,7 +48,7 @@ await checker.validatePersonAndCardAsync(
     "a15",
     796544,
     "y02n45764",
-    false); // Validate Person and Card ID from WEB API. -- false
+    true); // Validate Person and Card ID from WEB API. -- false
 
 //Print area.
 // Console.WriteLine(r1);
