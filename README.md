@@ -1,6 +1,10 @@
 
 # TC ID Checker for .NET.
 
+  <a href="https://www.nuget.org/packages/TCIDChecker_NET/">
+    <img src="https://img.shields.io/nuget/vpre/Discord.Net.svg?maxAge=2592000?style=plastic" alt="NuGet">
+  </a>
+
  Determines that given TC ID is correct or wrong based on rules for .NET.
 
 ## Features
