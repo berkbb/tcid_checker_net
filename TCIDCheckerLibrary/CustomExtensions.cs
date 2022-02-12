@@ -8,7 +8,7 @@ namespace CustomExtensions
     public static class StringExtension
     {
         /// <summary>
-        /// Parse boolean to string.
+        /// Parse stirng to boolean.
         /// </summary>
         /// <param name="str">String value of boolean.</param>
         /// <returns>boolean.</returns>
