@@ -5,10 +5,10 @@
   },
   "projects": {
     "/Users/berkbabadogan/Documents/GitHub/tcid_checker_net/TCIDCheckerLibrary/TCIDCheckerLibrary.csproj": {
-      "version": "1.0.0",
+      "version": "2.0.4",
       "restore": {
         "projectUniqueName": "/Users/berkbabadogan/Documents/GitHub/tcid_checker_net/TCIDCheckerLibrary/TCIDCheckerLibrary.csproj",
-        "projectName": "TCIDCheckerLibrary",
+        "projectName": "TCIDChecker_NET",
         "projectPath": "/Users/berkbabadogan/Documents/GitHub/tcid_checker_net/TCIDCheckerLibrary/TCIDCheckerLibrary.csproj",
         "packagesPath": "/Users/berkbabadogan/.nuget/packages/",
         "outputPath": "/Users/berkbabadogan/Documents/GitHub/tcid_checker_net/TCIDCheckerLibrary/obj/",

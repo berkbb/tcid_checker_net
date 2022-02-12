@@ -89,8 +89,6 @@ await checker.validatePersonAndCardAsync(
 // Console.WriteLine(r9);
 ```
 
-
-
 ## License
 
 * This project is licensed under the MIT License.
