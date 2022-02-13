@@ -17,6 +17,7 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageReleaseNotes>Initial version.</PackageReleaseNotes>
     <Copyright>Copyright (c) 2022 Berk Babadoğan.</Copyright>
+    <PackageTags>turkish identity card;turkishidentitiycard;turkishid;tc;tcid;verification;doğrulama;tc kimlik;tckimlik</PackageTags>
 
 
   </PropertyGroup>
