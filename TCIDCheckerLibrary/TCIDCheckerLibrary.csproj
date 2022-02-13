@@ -2,7 +2,7 @@
   <PropertyGroup>
     <PackageId>TCIDChecker_NET</PackageId>
     <Title>TC ID Checker for .NET</Title>
-    <Version>2.0.4</Version>
+    <Version>2.0.5</Version>
     <Authors>Berk Babadoğan</Authors>
     <Description>Determines that given TC ID is correct or wrong based on rules for .NET.</Description>
     <Language>en-US</Language>
@@ -15,7 +15,10 @@
     <RepositoryType>git</RepositoryType>
     <RepositoryBranch>main</RepositoryBranch>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageReleaseNotes>Initial version.</PackageReleaseNotes>
+    <PackageReleaseNotes>
+      * Readme.md updated.
+      * Search tags added.
+    </PackageReleaseNotes>
     <Copyright>Copyright (c) 2022 Berk Babadoğan.</Copyright>
     <PackageTags>turkish identity card;turkishidentitiycard;turkishid;tc;tcid;verification;doğrulama;tc kimlik;tckimlik</PackageTags>
 

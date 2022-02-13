@@ -11,7 +11,7 @@
     "/Users/berkbabadogan/.nuget/packages/": {}
   },
   "project": {
-    "version": "2.0.4",
+    "version": "2.0.5",
     "restore": {
       "projectUniqueName": "/Users/berkbabadogan/Documents/GitHub/tcid_checker_net/TCIDCheckerLibrary/TCIDCheckerLibrary.csproj",
       "projectName": "TCIDChecker_NET",

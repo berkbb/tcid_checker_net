@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>TCIDChecker_NET</id>
-    <version>2.0.4</version>
+    <version>2.0.5</version>
     <title>TC ID Checker for .NET</title>
     <authors>Berk Babadoğan</authors>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
@@ -10,7 +10,8 @@
     <licenseUrl>https://aka.ms/deprecateLicenseUrl</licenseUrl>
     <readme>README.md</readme>
     <description>Determines that given TC ID is correct or wrong based on rules for .NET.</description>
-    <releaseNotes>Initial version.</releaseNotes>
+    <releaseNotes>* Readme.md updated.
+      * Search tags added.</releaseNotes>
     <copyright>Copyright (c) 2022 Berk Babadoğan.</copyright>
     <tags>turkish identity card turkishidentitiycard turkishid tc tcid verification doğrulama tc kimlik tckimlik</tags>
     <repository type="git" url="https://github.com/berkbb/tcid_checker_net.git" branch="main" />
