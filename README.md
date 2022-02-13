@@ -1,7 +1,8 @@
 
 # TC ID Checker for .NET. 
 
-[![NuGet Version](https://img.shields.io/nuget/v/TCIDChecker_NET.svg?style=flat&label=nuget&color=brightgreen&logo=nuget)](https://www.nuget.org/packages/TCIDChecker_NET/) [![NuGet Downloads](https://img.shields.io/nuget/dt/TCIDChecker_NET.svg?color=brightgreen&?style=flat&logo=nuget)](https://www.nuget.org/packages/TCIDChecker_NET/)
+[![NuGet Version](https://img.shields.io/nuget/v/TCIDChecker_NET.svg?style=flat&label=nuget&color=informational&logo=nuget)](https://www.nuget.org/packages/TCIDChecker_NET/) [![NuGet Downloads](https://img.shields.io/nuget/dt/TCIDChecker_NET.svg?color=brightgreen&?style=flat&logo=nuget)](https://www.nuget.org/packages/TCIDChecker_NET/)
+
 
    
 
