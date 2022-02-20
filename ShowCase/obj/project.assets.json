@@ -11,7 +11,7 @@
           "lib/net6.0/ColorLoggerLibrary.dll": {}
         }
       },
-      "TCIDChecker_NET/2.0.6": {
+      "TCIDChecker_NET/2.0.7": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
@@ -41,7 +41,7 @@
         "lib/net6.0/ColorLoggerLibrary.dll"
       ]
     },
-    "TCIDChecker_NET/2.0.6": {
+    "TCIDChecker_NET/2.0.7": {
       "type": "project",
       "path": "../TCIDCheckerLibrary/TCIDCheckerLibrary.csproj",
       "msbuildProject": "../TCIDCheckerLibrary/TCIDCheckerLibrary.csproj"
@@ -49,7 +49,7 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "TCIDChecker_NET >= 2.0.6"
+      "TCIDChecker_NET >= 2.0.7"
     ]
   },
   "packageFolders": {

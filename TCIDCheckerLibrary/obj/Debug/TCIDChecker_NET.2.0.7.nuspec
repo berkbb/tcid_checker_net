@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>TCIDChecker_NET</id>
+    <version>2.0.7</version>
+    <title>TC ID Checker for .NET</title>
+    <authors>Berk Babadoğan</authors>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <license type="file">LICENSE.txt</license>
+    <licenseUrl>https://aka.ms/deprecateLicenseUrl</licenseUrl>
+    <readme>README.md</readme>
+    <description>Determines that given TC ID is correct or wrong based on rules for .NET.</description>
+    <releaseNotes>* Colored log output upgraded.</releaseNotes>
+    <copyright>Copyright (c) 2022 Berk Babadoğan.</copyright>
+    <tags>turkish identity card turkishidentitiycard turkishid tc tcid verification doğrulama tc kimlik tckimlik</tags>
+    <repository type="git" url="https://github.com/berkbb/tcid_checker_net.git" branch="main" />
+    <dependencies>
+      <group targetFramework="net6.0">
+        <dependency id="ColorLogger_NET" version="1.0.1" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="/Users/berkbabadogan/Documents/GitHub/tcid_checker_net/TCIDCheckerLibrary/bin/Debug/net6.0/TCIDCheckerLibrary.dll" target="lib/net6.0/TCIDCheckerLibrary.dll" />
+    <file src="/Users/berkbabadogan/Documents/GitHub/tcid_checker_net/TCIDCheckerLibrary/LICENSE.txt" target="/LICENSE.txt" />
+    <file src="/Users/berkbabadogan/Documents/GitHub/tcid_checker_net/TCIDCheckerLibrary/README.md" target="/README.md" />
+  </files>
+</package>

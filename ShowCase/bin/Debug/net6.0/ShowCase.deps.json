@@ -8,7 +8,7 @@
     ".NETCoreApp,Version=v6.0": {
       "ShowCase/1.0.0": {
         "dependencies": {
-          "TCIDChecker_NET": "2.0.6"
+          "TCIDChecker_NET": "2.0.7"
         },
         "runtime": {
           "ShowCase.dll": {}
@@ -22,7 +22,7 @@
           }
         }
       },
-      "TCIDChecker_NET/2.0.6": {
+      "TCIDChecker_NET/2.0.7": {
         "dependencies": {
           "ColorLogger_NET": "1.0.1"
         },
@@ -45,7 +45,7 @@
       "path": "colorlogger_net/1.0.1",
       "hashPath": "colorlogger_net.1.0.1.nupkg.sha512"
     },
-    "TCIDChecker_NET/2.0.6": {
+    "TCIDChecker_NET/2.0.7": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

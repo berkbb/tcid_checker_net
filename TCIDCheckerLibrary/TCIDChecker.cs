@@ -18,8 +18,9 @@ public class TCIDChecker
     /// <param name="id">is TC ID</param>
     /// <param name="skipRealCitizen">is a key that controls not to create a real citizen ID. If it is true, ID will start 0, it is not correct on real life.</param>
     /// <param name="printLog"> enables / dsiables console log. If true, log will printed.</param>
+    /// <param name="lvl">Print log type.</param>
     /// <returns>boolean.</returns>
-    public bool controlID(string id, bool skipRealCitizen, bool printLog)
+    public bool controlID(string id, bool skipRealCitizen, bool printLog, LogLevel lvl)
     {
         try
         {
@@ -89,7 +90,7 @@ public class TCIDChecker
             if (printLog == true)
             {
 
-                logger.Print($"TC ID: {id} is {(isValid == true ? "correct" : "wrong")}", LogLevel.info);
+                logger.Print($"TC ID: {id} is {(isValid == true ? "correct" : "wrong")}", lvl);
             }
             return isValid;
         }
@@ -105,8 +106,9 @@ public class TCIDChecker
     /// </summary>
     /// <param name="skipRealCitizen"> is a key that controls not to create a real citizen ID. If it is true, ID will start 0, it is not correct on real life.</param>
     /// <param name="computeFake">is a key that controls compute Fake TC ID or returns a  logger.Print ready value.</param>
+    /// <param name="lvl">Print log type.</param>
     /// <returns>string?.</returns>
-    public string? generateID(bool skipRealCitizen, bool computeFake)
+    public string? generateID(bool skipRealCitizen, bool computeFake, LogLevel lvl)
     {
         try
         {
@@ -161,7 +163,7 @@ public class TCIDChecker
                     var value = buffer.ToString().PadLeft(11, '0'); // Add 0 to left.
 
                     if (isValidInt == true &&
-                        controlID(value, true, false) ==
+                        controlID(value, true, false, lvl) ==
                             true) // Not null means valid integer && ID is correct.
                     {
                         generatedNum = value; // Set number.
@@ -169,13 +171,13 @@ public class TCIDChecker
                     }
                 } while (controlKey == false);
 
-                logger.Print($"Generated valid fake TC ID is: {generatedNum}", LogLevel.info);
+                logger.Print($"Generated valid fake TC ID is: {generatedNum}", lvl);
             }
             else if ((skipRealCitizen == false && computeFake == true) ||
               (skipRealCitizen == true && computeFake == true)) // Print Ready Fake ID
             {
                 generatedNum = "02345678982";
-                logger.Print($"Print ready valid fake TC ID is: {generatedNum}", LogLevel.info);
+                logger.Print($"Print ready valid fake TC ID is: {generatedNum}", lvl);
 
             }
             else
@@ -204,14 +206,14 @@ public class TCIDChecker
 
                     if (isValidInt == true &&
                     controlID(value, skipRealCitizen,
-                            false) == true) // Not null means valid integer && ID is correct.
+                            false, lvl) == true) // Not null means valid integer && ID is correct.
                     {
                         generatedNum = value; // Set number.
                         controlKey = true; // Stop loop.
                     }
 
                 } while (controlKey == false);
-                logger.Print($"Generated valid random TC ID is: {generatedNum!}", LogLevel.info);
+                logger.Print($"Generated valid random TC ID is: {generatedNum!}", lvl);
             }
 
             return generatedNum;
@@ -231,15 +233,16 @@ public class TCIDChecker
     /// <param name="surname"> is user surname.</param>
     /// <param name="birthYear">is user birth year.</param>
     /// <param name="skipRealCitizen">is a key that controls not to create a real citizen ID. If it is true, ID will start 0, it is not correct on real life.</param>
+    /// <param name="lvl">Print log type.</param>
     /// <returns>boolean.</returns>
     public async Task<bool> validateIDAsync(string id, string name, string surname, int birthYear,
-        bool skipRealCitizen)
+        bool skipRealCitizen, LogLevel lvl)
     {
         try
         {
             bool result = false;
 
-            if (controlID(id, skipRealCitizen, false) == true)
+            if (controlID(id, skipRealCitizen, false, lvl) == true)
             {
                 var soap12Envelope = CreateSoapEnvelope_ValidateID(id, name.ToLower(), surname.ToLower(), birthYear); // Validate ID SOAP Envelope
                 // logger.Print(await soap12Envelope.ReadAsStringAsync(), LogLevel.debug);                                                                                            //  logger.Print(await soap12Envelope.ReadAsStringAsync());
@@ -255,7 +258,7 @@ public class TCIDChecker
 
             }
             logger.Print(
-               $"Person --> ID: {id}, Name: {name.ToLower()}, Surname: {surname.ToLower()}, Birth Year: {birthYear} validation result via Web API = {result}", LogLevel.info);
+               $"Person --> ID: {id}, Name: {name.ToLower()}, Surname: {surname.ToLower()}, Birth Year: {birthYear} validation result via Web API = {result}", lvl);
 
             return result;
         }
@@ -282,6 +285,7 @@ public class TCIDChecker
     /// <param name="oldWalletNo">is old wallet number.</param>
     /// <param name="newidCardSerial">is new TC Id Card serial number</param>
     /// <param name="skipRealCitizen">is a key that controls not to create a real citizen ID. If it is true, ID will start 0, it is not correct on real life.</param>
+    /// <param name="lvl">Print log type.</param>
     /// <returns> boolean.</returns>
 
     public async Task<bool> validatePersonAndCardAsync(
@@ -297,13 +301,13 @@ public class TCIDChecker
          string oldWalletSerial,
          int oldWalletNo,
          string newidCardSerial,
-         bool skipRealCitizen)
+         bool skipRealCitizen, LogLevel lvl)
     {
         try
         {
             bool result = false;
 
-            if (controlID(id, skipRealCitizen, false) == true)
+            if (controlID(id, skipRealCitizen, false, lvl) == true)
             {
                 var soap12Envelope = CreateSoapEnvelope_ValidatePersonAndCard(id, name.ToLower(), surname.ToLower(), noSurname.ToString().ToLower(), birthDay, noBirthDay.ToString().ToLower(), birthMonth, noBirthMonth.ToString().ToLower(), birthYear, oldWalletSerial.ToLower(), oldWalletNo, newidCardSerial.ToLower()); // Validate ID SOAP Envelope
                 // logger.Print(await soap12Envelope.ReadAsStringAsync(), LogLevel.debug);
@@ -319,7 +323,7 @@ public class TCIDChecker
 
             }
             logger.Print(
-      $"Person and Card --> ID: {id}, Name: {name.ToLower()}, Surname: {surname.ToLower()}, Birth Year: {birthYear}, Birth Month: {birthMonth}, Birth Day: {birthDay},  Old Wallet No: {oldWalletNo},  Old Wallet Serial: {oldWalletSerial.ToLower()},  New ID Card Serial: {newidCardSerial.ToLower()} validation result via Web API = {result}", LogLevel.info);
+      $"Person and Card --> ID: {id}, Name: {name.ToLower()}, Surname: {surname.ToLower()}, Birth Year: {birthYear}, Birth Month: {birthMonth}, Birth Day: {birthDay},  Old Wallet No: {oldWalletNo},  Old Wallet Serial: {oldWalletSerial.ToLower()},  New ID Card Serial: {newidCardSerial.ToLower()} validation result via Web API = {result}", lvl);
 
 
             return result;
@@ -343,15 +347,16 @@ public class TCIDChecker
     /// <param name="birthMonth">is user birth month</param>
     /// <param name="birthYear">is user birth year.</param>
     /// <param name="skipRealCitizen">is a key that controls not to create a real citizen ID. If it is true, ID will start 0, it is not correct on real life.</param>
+    /// <param name="lvl">Print log type.</param>
     /// <returns>boolean.</returns>
     public async Task<bool> validateForeignIDAsync(string id, string name, string surname,
-    int birthDay, int birthMonth, int birthYear, bool skipRealCitizen)
+    int birthDay, int birthMonth, int birthYear, bool skipRealCitizen, LogLevel lvl)
     {
         try
         {
             bool result = false;
 
-            if (controlID(id, skipRealCitizen, false) == true)
+            if (controlID(id, skipRealCitizen, false, lvl) == true)
             {
                 var soap12Envelope = CreateSoapEnvelope_ValidateForeignID(id, name.ToLower(), surname.ToLower(), birthDay, birthMonth, birthYear); // Validate ID SOAP Envelope
                 // logger.Print(await soap12Envelope.ReadAsStringAsync(), LogLevel.debug);
@@ -367,7 +372,7 @@ public class TCIDChecker
 
             }
             logger.Print(
-               $"Foreign Person --> ID: {id}, Name: {name.ToLower()}, Surname: {surname.ToLower()}, Birth Year: {birthYear} validation result via Web API = {result}", LogLevel.info);
+               $"Foreign Person --> ID: {id}, Name: {name.ToLower()}, Surname: {surname.ToLower()}, Birth Year: {birthYear} validation result via Web API = {result}", lvl);
 
             return result;
         }
