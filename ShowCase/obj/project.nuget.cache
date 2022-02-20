@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "w+bsYUveQRcFJVfs0DTj0RLR7GJ9g5A05B3jXaftOiENICKBWLqL2s+eiqwUatZ+ZQg108TOgC9cD2eRu9NA4A==",
+  "dgSpecHash": "g/OS9AWaVkhYqNQ9M3TuSEH7F/8qxISGOtkvUJq5/8xtCRr+hD9hBV/982EtDbR5A0D61k2xLBsdguS4jlqpOA==",
   "success": true,
   "projectFilePath": "/Users/berkbabadogan/Documents/GitHub/tcid_checker_net/ShowCase/ShowCase.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/Users/berkbabadogan/.nuget/packages/colorlogger_net/1.0.1/colorlogger_net.1.0.1.nupkg.sha512"
+  ],
   "logs": []
 }

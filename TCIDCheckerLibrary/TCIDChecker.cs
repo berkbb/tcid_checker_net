@@ -2,6 +2,7 @@
 using System.Text;
 using System.Xml;
 using CustomExtensions;
+using ColorLoggerLibrary;
 
 namespace TCIDCheckerLibrary;
 /// <summary>
@@ -9,6 +10,7 @@ namespace TCIDCheckerLibrary;
 /// </summary>
 public class TCIDChecker
 {
+    ColorLoggerLibrary.ColorLogger logger = new ColorLogger();
 
     /// <summary>
     ///  Checks that Turkish ID number is correct or not.
@@ -86,13 +88,14 @@ public class TCIDChecker
 
             if (printLog == true)
             {
-                Console.WriteLine($"TC ID: {id} is {(isValid == true ? "correct" : "wrong")}");
+
+                logger.Print($"TC ID: {id} is {(isValid == true ? "correct" : "wrong")}", LogLevel.info);
             }
             return isValid;
         }
         catch (Exception e)
         {
-            Console.WriteLine($"An error occurred while checking Turkish ID - {e.Message}");
+            logger.Print($"An error occurred while checking Turkish ID - {e.Message}", LogLevel.error);
             return false;
         }
     }
@@ -101,7 +104,7 @@ public class TCIDChecker
     /// Generates valid random TC ID.
     /// </summary>
     /// <param name="skipRealCitizen"> is a key that controls not to create a real citizen ID. If it is true, ID will start 0, it is not correct on real life.</param>
-    /// <param name="computeFake">is a key that controls compute Fake TC ID or returns a Console.WriteLine ready value.</param>
+    /// <param name="computeFake">is a key that controls compute Fake TC ID or returns a  logger.Print ready value.</param>
     /// <returns>string?.</returns>
     public string? generateID(bool skipRealCitizen, bool computeFake)
     {
@@ -115,8 +118,8 @@ public class TCIDChecker
             if (skipRealCitizen == true &&
                 computeFake == false) // Fake ID starts with 0.
             {
-                Console.WriteLine(
-                    "Generating fake TC ID starts with '0', so it is hard to find any match. So, the process takes a little longer. Please wait.");
+                logger.Print(
+                   "Generating fake TC ID starts with '0', so it is hard to find any match. So, the process takes a little longer. Please wait.", LogLevel.warning);
                 do
                 {
                     var tcList = Enumerable.Repeat(0, size).ToList<int>();
@@ -166,13 +169,13 @@ public class TCIDChecker
                     }
                 } while (controlKey == false);
 
-                Console.WriteLine($"Generated valid fake TC ID is: {generatedNum}");
+                logger.Print($"Generated valid fake TC ID is: {generatedNum}", LogLevel.info);
             }
             else if ((skipRealCitizen == false && computeFake == true) ||
               (skipRealCitizen == true && computeFake == true)) // Print Ready Fake ID
             {
                 generatedNum = "02345678982";
-                Console.WriteLine($"Print ready valid fake TC ID is: {generatedNum}");
+                logger.Print($"Print ready valid fake TC ID is: {generatedNum}", LogLevel.info);
 
             }
             else
@@ -208,14 +211,14 @@ public class TCIDChecker
                     }
 
                 } while (controlKey == false);
-                Console.WriteLine($"Generated valid random TC ID is: {generatedNum!}");
+                logger.Print($"Generated valid random TC ID is: {generatedNum!}", LogLevel.info);
             }
 
             return generatedNum;
         }
         catch (Exception e)
         {
-            Console.WriteLine($"An error occurred while generating valid Turkish ID - {e.Message}");
+            logger.Print($"An error occurred while generating valid Turkish ID - {e.Message}", LogLevel.error);
             return null;
         }
     }
@@ -239,7 +242,7 @@ public class TCIDChecker
             if (controlID(id, skipRealCitizen, false) == true)
             {
                 var soap12Envelope = CreateSoapEnvelope_ValidateID(id, name.ToLower(), surname.ToLower(), birthYear); // Validate ID SOAP Envelope
-                                                                                                                      // Console.WriteLine(await soap12Envelope.ReadAsStringAsync());
+                // logger.Print(await soap12Envelope.ReadAsStringAsync(), LogLevel.debug);                                                                                            //  logger.Print(await soap12Envelope.ReadAsStringAsync());
                 var response = await CreateHTTPRequestAsync("https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx", soap12Envelope); // Make request.
 
                 if (response != null)
@@ -251,14 +254,14 @@ public class TCIDChecker
                 }
 
             }
-            Console.WriteLine(
-                $"Person --> ID: {id}, Name: {name.ToLower()}, Surname: {surname.ToLower()}, Birth Year: {birthYear} validation result via Web API = {result}");
+            logger.Print(
+               $"Person --> ID: {id}, Name: {name.ToLower()}, Surname: {surname.ToLower()}, Birth Year: {birthYear} validation result via Web API = {result}", LogLevel.info);
 
             return result;
         }
         catch (Exception e)
         {
-            Console.WriteLine($"An error occurred while validating Turkish ID - {e}");
+            logger.Print($"An error occurred while validating Turkish ID - {e}", LogLevel.error);
             return false;
         }
     }
@@ -303,7 +306,7 @@ public class TCIDChecker
             if (controlID(id, skipRealCitizen, false) == true)
             {
                 var soap12Envelope = CreateSoapEnvelope_ValidatePersonAndCard(id, name.ToLower(), surname.ToLower(), noSurname.ToString().ToLower(), birthDay, noBirthDay.ToString().ToLower(), birthMonth, noBirthMonth.ToString().ToLower(), birthYear, oldWalletSerial.ToLower(), oldWalletNo, newidCardSerial.ToLower()); // Validate ID SOAP Envelope
-                Console.WriteLine(await soap12Envelope.ReadAsStringAsync());
+                // logger.Print(await soap12Envelope.ReadAsStringAsync(), LogLevel.debug);
                 var response = await CreateHTTPRequestAsync("https://tckimlik.nvi.gov.tr/Service/KPSPublicV2.asmx", soap12Envelope); // Make request.
 
                 if (response != null)
@@ -315,15 +318,15 @@ public class TCIDChecker
                 }
 
             }
-            Console.WriteLine(
-       $"Person and Card --> ID: {id}, Name: {name.ToLower()}, Surname: {surname.ToLower()}, Birth Year: {birthYear}, Birth Month: {birthMonth}, Birth Day: {birthDay},  Old Wallet No: {oldWalletNo},  Old Wallet Serial: {oldWalletSerial.ToLower()},  New ID Card Serial: {newidCardSerial.ToLower()} validation result via Web API = {result}");
+            logger.Print(
+      $"Person and Card --> ID: {id}, Name: {name.ToLower()}, Surname: {surname.ToLower()}, Birth Year: {birthYear}, Birth Month: {birthMonth}, Birth Day: {birthDay},  Old Wallet No: {oldWalletNo},  Old Wallet Serial: {oldWalletSerial.ToLower()},  New ID Card Serial: {newidCardSerial.ToLower()} validation result via Web API = {result}", LogLevel.info);
 
 
             return result;
         }
         catch (Exception e)
         {
-            Console.WriteLine($"An error occurred while validating Person and Card - {e}");
+            logger.Print($"An error occurred while validating Person and Card - {e}", LogLevel.error);
             return false;
         }
 
@@ -351,7 +354,7 @@ public class TCIDChecker
             if (controlID(id, skipRealCitizen, false) == true)
             {
                 var soap12Envelope = CreateSoapEnvelope_ValidateForeignID(id, name.ToLower(), surname.ToLower(), birthDay, birthMonth, birthYear); // Validate ID SOAP Envelope
-                //Console.WriteLine(await soap12Envelope.ReadAsStringAsync());
+                // logger.Print(await soap12Envelope.ReadAsStringAsync(), LogLevel.debug);
                 var response = await CreateHTTPRequestAsync("https://tckimlik.nvi.gov.tr/Service/KPSPublicYabanciDogrula.asmx", soap12Envelope); // Make request.
 
                 if (response != null)
@@ -363,14 +366,14 @@ public class TCIDChecker
                 }
 
             }
-            Console.WriteLine(
-                $"Foreign Person --> ID: {id}, Name: {name.ToLower()}, Surname: {surname.ToLower()}, Birth Year: {birthYear} validation result via Web API = {result}");
+            logger.Print(
+               $"Foreign Person --> ID: {id}, Name: {name.ToLower()}, Surname: {surname.ToLower()}, Birth Year: {birthYear} validation result via Web API = {result}", LogLevel.info);
 
             return result;
         }
         catch (Exception e)
         {
-            Console.WriteLine($"An error occurred while validating Foreign ID - {e}");
+            logger.Print($"An error occurred while validating Foreign ID - {e}", LogLevel.error);
             return false;
         }
 
@@ -403,7 +406,7 @@ public class TCIDChecker
         }
         catch (Exception e)
         {
-            Console.WriteLine($"An error occurred while http request - {e.Message}");
+            logger.Print($"An error occurred while http request - {e.Message}", LogLevel.error);
             return null;
         }
     }

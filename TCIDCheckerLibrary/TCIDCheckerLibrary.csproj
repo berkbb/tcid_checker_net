@@ -1,33 +1,31 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <PackageId>TCIDChecker_NET</PackageId>
-    <Title>TC ID Checker for .NET</Title>
-    <Version>2.0.5</Version>
-    <Authors>Berk Babadoğan</Authors>
-    <Description>Determines that given TC ID is correct or wrong based on rules for .NET.</Description>
-    <Language>en-US</Language>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <RepositoryUrl>https://github.com/berkbb/tcid_checker_net.git</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
-    <RepositoryBranch>main</RepositoryBranch>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageReleaseNotes>
-      * Readme.md updated.
-      * Search tags added.
+	<PropertyGroup>
+		<PackageId>TCIDChecker_NET</PackageId>
+		<Title>TC ID Checker for .NET</Title>
+		<Version>2.0.6</Version>
+		<Authors>Berk Babadoğan</Authors>
+		<Description>Determines that given TC ID is correct or wrong based on rules for .NET.</Description>
+		<Language>en-US</Language>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+		<RepositoryUrl>https://github.com/berkbb/tcid_checker_net.git</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<RepositoryBranch>main</RepositoryBranch>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageReleaseNotes>
+      * Colored log output updated.
     </PackageReleaseNotes>
-    <Copyright>Copyright (c) 2022 Berk Babadoğan.</Copyright>
-    <PackageTags>turkish identity card;turkishidentitiycard;turkishid;tc;tcid;verification;doğrulama;tc kimlik;tckimlik</PackageTags>
-
-
-  </PropertyGroup>
-
-  <ItemGroup>
-    <None Include="LICENSE.txt" Pack="true" PackagePath="/" />
-    <None Include="README.md" Pack="true" PackagePath="/" />
-  </ItemGroup>
-
+		<Copyright>Copyright (c) 2022 Berk Babadoğan.</Copyright>
+		<PackageTags>turkish identity card;turkishidentitiycard;turkishid;tc;tcid;verification;doğrulama;tc kimlik;tckimlik</PackageTags>
+	</PropertyGroup>
+	<ItemGroup>
+		<None Include="LICENSE.txt" Pack="true" PackagePath="/" />
+		<None Include="README.md" Pack="true" PackagePath="/" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="ColorLogger_NET" Version="1.0.1" />
+	</ItemGroup>
 </Project>

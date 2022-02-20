@@ -6,18 +6,36 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v6.0": {
-      "TCIDCheckerLibrary/2.0.5": {
+      "TCIDCheckerLibrary/2.0.6": {
+        "dependencies": {
+          "ColorLogger_NET": "1.0.1"
+        },
         "runtime": {
           "TCIDCheckerLibrary.dll": {}
+        }
+      },
+      "ColorLogger_NET/1.0.1": {
+        "runtime": {
+          "lib/net6.0/ColorLoggerLibrary.dll": {
+            "assemblyVersion": "1.0.1.0",
+            "fileVersion": "1.0.1.0"
+          }
         }
       }
     }
   },
   "libraries": {
-    "TCIDCheckerLibrary/2.0.5": {
+    "TCIDCheckerLibrary/2.0.6": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "ColorLogger_NET/1.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-+MPzQirBmMut4+CLHn2PV8FGxtFIrSo85ImGaiuTuCvPRv7rRGWwu3K7UCatuhD8Q3UsXYviSBMS2uNYv35LDg==",
+      "path": "colorlogger_net/1.0.1",
+      "hashPath": "colorlogger_net.1.0.1.nupkg.sha512"
     }
   }
 }
