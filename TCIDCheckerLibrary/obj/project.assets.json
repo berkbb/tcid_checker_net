@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     "net6.0": {
-      "ColorLogger_NET/1.0.1": {
+      "ColorLogger_NET/1.0.3": {
         "type": "package",
         "compile": {
           "lib/net6.0/ColorLoggerLibrary.dll": {}
@@ -14,16 +14,16 @@
     }
   },
   "libraries": {
-    "ColorLogger_NET/1.0.1": {
-      "sha512": "+MPzQirBmMut4+CLHn2PV8FGxtFIrSo85ImGaiuTuCvPRv7rRGWwu3K7UCatuhD8Q3UsXYviSBMS2uNYv35LDg==",
+    "ColorLogger_NET/1.0.3": {
+      "sha512": "TeJs7xZGh0qq/v7cvbkX3ox81CXftC2xeDv4EV5o0+mz96OFj6+9MZYnRt60SG5YsUhb9lzn2O+lssoGS12xBQ==",
       "type": "package",
-      "path": "colorlogger_net/1.0.1",
+      "path": "colorlogger_net/1.0.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.txt",
         "README.md",
-        "colorlogger_net.1.0.1.nupkg.sha512",
+        "colorlogger_net.1.0.3.nupkg.sha512",
         "colorlogger_net.nuspec",
         "lib/net6.0/ColorLoggerLibrary.dll"
       ]
@@ -31,14 +31,14 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "ColorLogger_NET >= 1.0.1"
+      "ColorLogger_NET >= 1.0.3"
     ]
   },
   "packageFolders": {
     "/Users/berkbabadogan/.nuget/packages/": {}
   },
   "project": {
-    "version": "2.0.7",
+    "version": "2.0.8",
     "restore": {
       "projectUniqueName": "/Users/berkbabadogan/Documents/GitHub/tcid_checker_net/TCIDCheckerLibrary/TCIDCheckerLibrary.csproj",
       "projectName": "TCIDChecker_NET",
@@ -73,7 +73,7 @@
         "dependencies": {
           "ColorLogger_NET": {
             "target": "Package",
-            "version": "[1.0.1, )"
+            "version": "[1.0.3, )"
           }
         },
         "imports": [
