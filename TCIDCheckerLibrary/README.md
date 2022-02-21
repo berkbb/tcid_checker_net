@@ -1,10 +1,12 @@
 
-# TC ID Checker for .NET.
+# TC ID Checker for .NET. 
 
-[![NuGet Version](https://img.shields.io/nuget/v/TCIDChecker_NET.svg?style=flat&label=nuget&color=informational&logo=nuget)](https://www.nuget.org/packages/TCIDChecker_NET/) 
-[![NuGet Downloads](https://img.shields.io/nuget/dt/TCIDChecker_NET.svg?color=brightgreen&?style=flat&logo=nuget)](https://www.nuget.org/packages/TCIDChecker_NET/)
+[![NuGet Version](https://img.shields.io/nuget/v/TCIDChecker_NET?&label=nuget&color=informational&logo=nuget)](https://www.nuget.org/packages/TCIDChecker_NET/) 
+[![NuGet Downloads](https://img.shields.io/nuget/dt/TCIDChecker_NET?color=brightgreen&logo=nuget)](https://www.nuget.org/packages/TCIDChecker_NET/)
 [![License](https://img.shields.io/github/license/berkbb/tcid_checker_net?color=important)](https://www.nuget.org/packages/TCIDChecker_NET/)
 
+
+   
 
  Determines that given TC ID is correct or wrong based on rules for .NET.
 
@@ -94,4 +96,5 @@ await checker.validatePersonAndCardAsync(
 // Console.WriteLine(r8);
 // Console.WriteLine(r9);
 ```
+
 
