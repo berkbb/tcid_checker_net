@@ -1,3 +1,9 @@
+## [2.1.0] - 2026-02-14
+
+* Updated target framework from .NET 6 to .NET 10.
+* Upgraded `ColorLogger_NET` dependency to `1.1.0`.
+* Modernized extension internals with backward-compatible API alias.
+
 ## [2.0.8] - 2022-02-20
 
 * Colored log output upgraded to new version.

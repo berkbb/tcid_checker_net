@@ -1,37 +1,28 @@
-namespace CustomExtensions
+namespace CustomExtensions;
+
+/// <summary>
+/// String extension class.
+/// </summary>
+public static class StringExtension
 {
-
-
     /// <summary>
-    /// String extension class.
+    /// Parse string to boolean.
     /// </summary>
-    public static class StringExtension
+    /// <param name="str">String value of boolean.</param>
+    /// <returns>Boolean value.</returns>
+    /// <exception cref="FormatException">If <paramref name="str"/> is not a boolean string.</exception>
+    public static bool ParseBool(this string str)
     {
-        /// <summary>
-        /// Parse stirng to boolean.
-        /// </summary>
-        /// <param name="str">String value of boolean.</param>
-        /// <returns>boolean.</returns>
-        /// <exception cref="FormatException">If str is not a bool string.</exception>
-        public static bool parseBool(this string str)
-        {
-            try
-            {
+        ArgumentNullException.ThrowIfNull(str);
 
-                if (str.ToLower() == "true" || str.ToLower() == "false")
-                {
-                    return (str.ToLower() == "true" ? true : false);
-                }
-                else
-                {
-                    throw new FormatException();
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine($"{str} can not be parsed to boolean -{e.Message}");
-                return false;
-            }
+        if (bool.TryParse(str, out var value))
+        {
+            return value;
         }
+
+        throw new FormatException($"'{str}' cannot be parsed to boolean.");
     }
+
+    // Backward compatible alias for older consumers.
+    public static bool parseBool(this string str) => ParseBool(str);
 }

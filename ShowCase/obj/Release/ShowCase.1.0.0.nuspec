@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>ShowCase</id>
+    <version>1.0.0</version>
+    <authors>ShowCase</authors>
+    <description>Package Description</description>
+    <repository type="git" commit="41c9643322cb242c5e46c1471af126d294b4d509" />
+    <dependencies>
+      <group targetFramework="net10.0">
+        <dependency id="TCIDChecker_NET" version="2.1.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="/Users/berkbabadogan/Documents/GitHub/tcid_checker bundle/tcid_checker_net/ShowCase/bin/Release/net10.0/ShowCase.runtimeconfig.json" target="lib/net10.0/ShowCase.runtimeconfig.json" />
+    <file src="/Users/berkbabadogan/Documents/GitHub/tcid_checker bundle/tcid_checker_net/ShowCase/bin/Release/net10.0/ShowCase.dll" target="lib/net10.0/ShowCase.dll" />
+  </files>
+</package>

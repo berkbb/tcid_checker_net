@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "2gHJDFYHh7WC5Qk5FpOnus78mcBstznw+FldMDO6W5Iu6CMUrfK7h+SD+hADlrNtuAkUDKFqrQyqTd7SnDQKOg==",
+  "dgSpecHash": "K3kDfMYV6sk=",
   "success": true,
-  "projectFilePath": "/Users/berkbabadogan/Documents/GitHub/tcid_checker_net/TCIDCheckerLibrary/TCIDCheckerLibrary.csproj",
+  "projectFilePath": "/Users/berkbabadogan/Documents/GitHub/tcid_checker bundle/tcid_checker_net/TCIDCheckerLibrary/TCIDCheckerLibrary.csproj",
   "expectedPackageFiles": [
-    "/Users/berkbabadogan/.nuget/packages/colorlogger_net/1.0.3/colorlogger_net.1.0.3.nupkg.sha512"
+    "/Users/berkbabadogan/.nuget/packages/colorlogger_net/1.1.0/colorlogger_net.1.1.0.nupkg.sha512"
   ],
   "logs": []
 }

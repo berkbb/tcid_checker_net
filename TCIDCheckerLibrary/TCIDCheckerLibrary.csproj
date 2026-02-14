@@ -2,11 +2,12 @@
 	<PropertyGroup>
 		<PackageId>TCIDChecker_NET</PackageId>
 		<Title>TC ID Checker for .NET</Title>
-		<Version>2.0.8</Version>
+		<Version>2.1.0</Version>
 		<Authors>Berk Babadoğan</Authors>
 		<Description>Determines that given TC ID is correct or wrong based on rules for .NET.</Description>
 		<Language>en-US</Language>
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFramework>net10.0</TargetFramework>
+		<LangVersion>latest</LangVersion>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
@@ -16,7 +17,9 @@
 		<RepositoryBranch>main</RepositoryBranch>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageReleaseNotes>
-      * Colored log output upgraded to new version.
+      * Updated target framework to .NET 10.
+      * Upgraded ColorLogger dependency.
+      * Modernized extension internals while preserving backward compatibility.
     </PackageReleaseNotes>
 		<Copyright>Copyright (c) 2022 Berk Babadoğan.</Copyright>
 		<PackageTags>turkish identity card;turkishidentitiycard;turkishid;tc;tcid;verification;doğrulama;tc kimlik;tckimlik</PackageTags>
@@ -26,6 +29,6 @@
 		<None Include="README.md" Pack="true" PackagePath="/" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="ColorLogger_NET" Version="1.0.3" />
+		<PackageReference Include="ColorLogger_NET" Version="1.1.0" />
 	</ItemGroup>
 </Project>
